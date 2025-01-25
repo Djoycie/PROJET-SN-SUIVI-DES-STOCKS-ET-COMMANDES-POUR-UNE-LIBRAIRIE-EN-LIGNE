@@ -1,0 +1,154 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+.logo-section {
+    width: 40%;
+    background-color: #624de3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    width: 150px;
+    height: 150px;
+    background-color: #fdd835;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.logo:before {
+    content: "";
+    width: 90px;
+    height: 50px;
+    background-color: white;
+    position: absolute;
+    top: 45px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.login-section {
+    width: 60%;
+    padding: 40px;
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Effet de superposition */
+}
+
+h1 {
+    color: #333;
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+p {
+    color: black;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.datetime {
+    margin-bottom: 30px;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Effet de superposition */
+    height: 400px;
+    margin-top: 60px;
+}
+
+
+
+.input-group {
+    width: 80%;
+    text-align: left;
+}
+
+label {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+    text-align: right;
+
+}
+
+input {
+    width: 90%;
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #624de3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #5630bd;
+}
+
+.forgot-password {
+    color: #624de3;
+    text-decoration: none;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.already-account {
+    color: #624de3;
+    text-decoration: none;
+    font-size: 14px;
+    margin-top: 10px;
+    display: block;
+}
+
+.already-account:hover {
+    text-decoration: underline;
+}
+
+.input-group{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+.nom{
+    font-size: 20px;
+}
+
+.prenom{
+    font-size: 20px;
+}
