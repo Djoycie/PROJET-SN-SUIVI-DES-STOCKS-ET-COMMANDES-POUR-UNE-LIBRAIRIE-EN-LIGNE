@@ -17,6 +17,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 909px;
 }
 
 .logo {
@@ -48,6 +49,7 @@ body {
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Effet de superposition */
+    height: 829px;
 }
 
 h1 {
@@ -63,10 +65,7 @@ p {
     font-size: 25px;
 }
 
-.datetime {
-    margin-bottom: 30px;
-    color: #333;
-}
+
 
 form {
     display: flex;
@@ -74,7 +73,7 @@ form {
     align-items: center;
     gap: 25px;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Effet de superposition */
-    height: 410px;
+    height: 690px;
     margin-top: 60px;
 }
 
@@ -145,10 +144,10 @@ button:hover {
     gap: 10px;
     margin-bottom: 15px;
 }
-.nom{
-    font-size: 20px;
-}
 
-.mdp{
+
+.nom, .prenom, .email, .telephone, .adresse, .password {
     font-size: 20px;
+    font-weight: bold;
+    color: #333;
 }
