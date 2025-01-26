@@ -148,3 +148,21 @@ input, button, select {
 .add-to-cart:hover {
     background-color: #388e3c;
 }
+
+.btn {
+    background-color: #6c85f1; /* Couleur de fond par défaut */
+    transition: background-color 0.3s, transform 0.2s;
+    padding: -2px 5px; /* Ajoute un peu de padding */
+    border: none; /* Enlève la bordure */
+    color: rgb(17, 17, 17); /* Change la couleur du texte */
+    cursor: pointer; /* Change le curseur au survol */
+    height: 50px;
+    margin-top: 20px;
+    margin-left: auto;
+}
+.btn:hover{
+    background-color: #18a8ad; /* Une couleur plus foncée pour l'orange */
+    transform: scale(1.05); /* Légère augmentation de la taille */
+}
+
+
