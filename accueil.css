@@ -163,6 +163,7 @@ input, button, select {
 .btn:hover{
     background-color: #18a8ad; /* Une couleur plus foncée pour l'orange */
     transform: scale(1.05); /* Légère augmentation de la taille */
+    color: #a7b4ee;
 }
 
 

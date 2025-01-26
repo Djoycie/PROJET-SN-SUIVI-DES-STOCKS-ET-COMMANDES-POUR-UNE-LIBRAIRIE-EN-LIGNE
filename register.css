@@ -149,5 +149,5 @@ button:hover {
 .nom, .prenom, .email, .telephone, .adresse, .password {
     font-size: 20px;
     font-weight: bold;
-    color: #333;
+   color:#333;
 }

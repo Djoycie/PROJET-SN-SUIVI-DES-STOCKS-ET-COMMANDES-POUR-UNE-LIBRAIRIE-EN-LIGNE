@@ -126,17 +126,3 @@ table th {
     cursor: pointer; /* Change le curseur au survol */
 }
 
-.btn.green:hover {
-    background-color: #4CAF50; /* Une couleur plus foncée pour le vert */
-    transform: scale(1.05); /* Légère augmentation de la taille */
-}
-
-.btn.orange:hover {
-    background-color: #FF9800; /* Une couleur plus foncée pour l'orange */
-    transform: scale(1.05); /* Légère augmentation de la taille */
-}
-
-.btn.blue:hover {
-    background-color: #2196F3; /* Une couleur plus foncée pour le bleu */
-    transform: scale(1.05); /* Légère augmentation de la taille */
-               }
