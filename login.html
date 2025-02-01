@@ -15,22 +15,20 @@
             <h1>Bienvenue à la librairie BookShop</h1>
            
             
-            <form>
-                <p>LOGIN</p>
+            <form action="login.php" method="post">
                 <div class="input-group">
-                    <label class="nom" for="nom">Nom:</label>
-                    <input type="text" id="nom" placeholder="Entrez votre nom">
+                    <label for="nom">Nom:</label>
+                    <input type="text" id="nom" name="nom" placeholder="Entrez votre nom" required>
                 </div>
                 <div class="input-group">
-                    <label class="mdp" for="mdp">Mot de passe:</label>
-                    <input type="password" id="mdp" placeholder="Entrez votre mot de passe">
+                    <label for="password">Mot de passe:</label>
+                    <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" required>
                 </div>
-                <button type="submit">Se Connecter</button>
-                <a href="#" class="forgot-password">Mot de passe oublié??</a>
-            <a href="register.html" class="already-account">Creer un compte</a>
+                <button type="submit">Se connecter</button>
+                <a href="register.html">Pas encore de compte ? Inscrivez-vous</a>
             </form>
-            
+    
+           
         </div>
-    </div>
-</body>
-</html>
+    </body>
+    </html>
