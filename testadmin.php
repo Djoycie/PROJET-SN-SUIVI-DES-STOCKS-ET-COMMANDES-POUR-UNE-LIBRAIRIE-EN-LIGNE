@@ -55,17 +55,16 @@ if (isset($_POST['categorie']) && $_POST['categorie'] != '') {
         <nav>
             <ul>
                 <li>Gestion du stock</li>
-                <li>Historique des clients</li>
+                <li onclick="window.location.href='historiqueclients.php'">Historique des clients</li>
                 <li>Historique commandes</li>
-                <li>Rapport satisfaction Client</li>
-                <li>Notifications</li>
-                <li>Se deconnecter</li>
+                <li  onclick="window.location.href='historique_commentaire.php'">Rapport satisfaction Client</li>
+               <li id="logoutButton">Se deconnecter</li>
             </ul>
         </nav>
     </div>
     <div class="main-content">
         <header>
-            <h1>Tableaux de l'Administrateur</h1>
+            <h1>Gestion des stocks</h1>
             <div class="actions">
                 <a href="ajouter.php"><button class="btn green">+ Ajouter un livre</button></a>
                 <form action="export.php" method="GET" ><button type="submit" name="export" value="pdf" class="btn orange">Imprimer PDF</button></form>
@@ -122,5 +121,11 @@ if (isset($_POST['categorie']) && $_POST['categorie'] != '') {
             </table>
         </section>
     </div>
+    <script> 
+        document.getElementById("logoutButton").addEventListener("click", function() {
+    window.location.href = "logoutadmin.php"; 
+});
+
+    </script>
 </body>
 </html>

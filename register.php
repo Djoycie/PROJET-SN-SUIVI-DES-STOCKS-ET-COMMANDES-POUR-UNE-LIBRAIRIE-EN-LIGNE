@@ -1,10 +1,10 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   
     $serverName = "DESKTOP-H147H0H\SQLEXPRESS";
     $database = "projetsn"; 
     $username = "";
     $password = "";
-
     try {
         // Connexion à SQL Server
         $conn = new PDO("sqlsrv:Server=$serverName;Database=$database", $username, $password);
@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $motDePasse = password_hash($_POST['password'], PASSWORD_BCRYPT); // Hachage du mot de passe
 
         // Appel de la procédure stockée
-        $stmt = $conn->prepare("EXEC AjouterClient :nom, :prenom, :email, :telephone, :adresse, :motDePasse");
+        $stmt = $conn->prepare("EXEC AjouterClients :nom, :prenom, :email, :telephone, :adresse, :motDePasse");
         $stmt->bindParam(':nom', $nom);
         $stmt->bindParam(':prenom', $prenom);
         $stmt->bindParam(':email', $email);
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     } catch (PDOException $e) {
         // Gestion des erreurs
-        echo "<script>alert('Erreur : " . addslashes($e->getMessage()) . "');</script>";
+        echo "<script>alert('Erreur : " . addslashes($e->getMessage()) . "');window.location.href='register.html';</script>";
     }
 }
 ?>

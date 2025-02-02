@@ -1,73 +1,79 @@
 <?php
-session_start();
-$serverName = "DESKTOP-H147H0H\\SQLEXPRESS";
-$database = "projetsn";
-$username = "";
-$password = "";
-$conn = new PDO("sqlsrv:Server=$serverName;Database=$database", $username, $password);
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+session_start(); // Démarrage de la session
 
-if (!isset($_SESSION['id_client'])) {
-    header("Location: login.html");
+// Vérifie si l'utilisateur est connecté
+if (!isset($_SESSION['nom'])) {
+    header("Location: login.html"); // Redirection vers la page de login si l'utilisateur n'est pas connecté
     exit();
 }
 
-$id_client = $_SESSION['id_client'];
+$serverName = "DESKTOP-H147H0H\SQLEXPRESS";
+$database = "projetsn";
+$username = "";
+$password = "";
 
-// Récupérer les informations du client
-$stmt = $conn->prepare("SELECT * FROM clients WHERE id = ?");
-$stmt->execute([$id_client]);
-$client = $stmt->fetch(PDO::FETCH_ASSOC);
+try {
+    // Connexion à la base de données
+    $conn = new PDO("sqlsrv:Server=$serverName;Database=$database", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Récupérer les informations de l'utilisateur connecté
+    $nom = $_SESSION['nom'];
+    $stmt = $conn->prepare("SELECT * FROM clients WHERE nom = :nom");
+    $stmt->bindParam(':nom', $nom);
+    $stmt->execute();
+    $client = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$client) {
+        echo "Utilisateur non trouvé.";
+        exit();
+    }
+} catch (PDOException $e) {
+    echo "Erreur : " . $e->getMessage();
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Compte</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h2>Informations du compte</h2>
-    <form id="formCompte">
-        <label>Nom :</label>
-        <input type="text" name="nom" value="<?= htmlspecialchars($client['nom']) ?>" required>
 
-        <label>Email :</label>
-        <input type="email" name="email" value="<?= htmlspecialchars($client['email']) ?>" required>
+    <h1>Mon Compte</h1>
+    
+    <form action="update_compte.php" method="POST">
+        <div>
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" value="<?= htmlspecialchars($client['nom']); ?>" readonly>
+        </div>
 
-        <label>Téléphone :</label>
-        <input type="text" name="telephone" value="<?= htmlspecialchars($client['telephone']) ?>" required>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" value="<?= htmlspecialchars($client['email']); ?>">
+        </div>
 
-        <label>Adresse :</label>
-        <input type="text" name="adresse" value="<?= htmlspecialchars($client['adresse']) ?>" required>
+        <div>
+            <label for="adresse">Adresse</label>
+            <input type="text" id="adresse" name="adresse" value="<?= htmlspecialchars($client['adresse']); ?>">
+        </div>
 
-        <input type="hidden" name="id" value="<?= $id_client ?>">
+        <div>
+            <label for="telephone">Téléphone</label>
+            <input type="text" id="telephone" name="telephone" value="<?= htmlspecialchars($client['telephone']); ?>">
+        </div>
 
-        <button type="button" id="modifier">Modifier</button>
-        <button type="submit" id="valider" style="display:none;">Valider les modifications</button>
+        <div>
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" name="password">
+        </div>
+
+        <button type="submit">Valider les modifications</button>
     </form>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $("#modifier").click(function() {
-            $("input").prop("disabled", false);
-            $("#valider").show();
-            $(this).hide();
-        });
-
-        $("#formCompte").submit(function(e) {
-            e.preventDefault();
-            $.ajax({
-                type: "POST",
-                url: "update_compte.php",
-                data: $(this).serialize(),
-                success: function(response) {
-                    alert(response);
-                    location.reload();
-                }
-            });
-        });
-    </script>
 </body>
 </html>

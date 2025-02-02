@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $passwordInput = $_POST['password'];
 
         // Exécution de la procédure stockée pour récupérer le mot de passe haché
-        $stmt = $conn->prepare("EXEC VerifierClient :nom");
+        $stmt = $conn->prepare("EXEC VerifierClients :nom");
         $stmt->bindParam(':nom', $nom);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);

@@ -15,11 +15,12 @@ body {
 
 .container {
     display: flex;
-    width: 800px;
+    width: 850px;
     background: #fff;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 615px;
 }
 
 .logo-section {

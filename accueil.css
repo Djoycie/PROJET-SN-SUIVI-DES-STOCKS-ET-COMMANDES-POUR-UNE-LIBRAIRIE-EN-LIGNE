@@ -12,16 +12,17 @@ body {
 
 .sidebar {
     width: 20%;
-    background-color: #624de3;
+    background-color: #3498db;
     display: flex;
     flex-direction: column;
     padding: 20px 0;
     gap: 15px;
     align-items: center;
+    height: 1000px;
 }
 
 .sidebar-button {
-    width: 90%;
+    width: 100%;
     padding: 10px;
     background-color: white;
     border: none;
