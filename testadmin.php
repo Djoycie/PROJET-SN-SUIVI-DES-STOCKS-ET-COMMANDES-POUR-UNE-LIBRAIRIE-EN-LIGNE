@@ -7,6 +7,7 @@ $password = "";
 $conn = new PDO("sqlsrv:Server=$serverName;Database=$database", $username, $password);
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+
 // Récupérer la liste des livres
 $stmt = $conn->prepare("SELECT * FROM dbo.Livres");
 $stmt->execute();

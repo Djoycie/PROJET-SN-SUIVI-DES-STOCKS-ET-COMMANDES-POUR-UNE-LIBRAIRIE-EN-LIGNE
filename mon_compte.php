@@ -19,7 +19,7 @@ try {
 
     // Récupérer les informations de l'utilisateur connecté
     $nom = $_SESSION['nom'];
-    $stmt = $conn->prepare("SELECT * FROM clients WHERE nom = :nom");
+    $stmt = $conn->prepare("SELECT * FROM client WHERE nom = :nom");
     $stmt->bindParam(':nom', $nom);
     $stmt->execute();
     $client = $stmt->fetch(PDO::FETCH_ASSOC);

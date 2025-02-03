@@ -31,7 +31,10 @@ if (isset($_SESSION["panier"])) {
 
   echo "<tr><td colspan='5'>Total :</td><td>" . $total . " fcfa</td></tr>";
   echo "</table>";
-  echo "<p ><button style='background-color:#3498db;  margin-left:280px;' onclick='commander'  >Commander</button></p>";
+  echo "<form action='passer_commande.php' method='POST'>
+          <button style='background-color:#3498db; margin-left:280px; cursor:pointer;' type='submit'>Commander</button>
+        </form>";
+
 
 } else {
   echo "Votre panier est vide.";

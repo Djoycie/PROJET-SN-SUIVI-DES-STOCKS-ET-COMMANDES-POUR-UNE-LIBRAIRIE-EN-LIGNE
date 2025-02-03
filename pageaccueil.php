@@ -108,11 +108,29 @@ th{
         <div class="user-info">
             <div class="profile-pic"></div>
             <img class="image" src="téléchargement.png" alt="profile picture">
-            <p>Compte Client</p>
+            <p> <?php
+
+if (!isset($_SESSION['nom'])) {
+    header("Location: login.html");
+    exit();
+}
+echo   $_SESSION['nom'];
+?></p>
             <span class="statu">Online</span>
             <button class="sidebar-button"  onclick="window.location.href='mon_compte.php'"><span>👤</span> Mon Compte</button>
             <button class="sidebar-button" id="monPanier"><span>🛒</span> Mon panier <span id="notifPanier">0</span></button>
-            <button class="sidebar-button"  ><span>📦</span> Mes commandes</button>
+            <button class="sidebar-button"  onclick="window.location.href='mes_commandes.php'" id="mesCommandesBtn"><span>📦</span> Mes commandes</button>
+
+<div id="commandesContainer" style="display:none;">
+    <!-- Les commandes seront affichées ici via PHP -->
+</div>
+
+<script>
+    // Lorsque l'utilisateur clique sur "Mes commandes", afficher la liste des commandes
+    document.getElementById("mesCommandesBtn").addEventListener("click", function() {
+        document.getElementById("commandesContainer").style.display = "block";
+    });
+</script>
             <button class="sidebar-button"  id="logoutButton" ><span>⏻</span> Se déconnecter</button>
         </aside>
         
@@ -311,7 +329,74 @@ $(document).ready(function() {
 
 document.getElementById("logoutButton").addEventListener("click", function() {
     window.location.href = "logout.php"; 
+
+function commander() {
+  var commander = []; // Déclarez et initialisez la variable
+
+    let formHtml = `
+        <h3>Informations de commande</h3>
+        <form id="commandeForm">
+            <label>Nom :</label><input type="text" name="nom" required><br>
+            <label>Adresse :</label><input type="text" name="adresse" required><br>
+            <label>Téléphone :</label><input type="text" name="telephone" required><br>
+            <button type="submit">Valider la commande</button>
+        </form>
+    `;
+
+    document.getElementById("panierContent").innerHTML = formHtml;
+
+    document.getElementById("commandeForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        validerCommande();
+    });
+}
+
 });
+
+
+function validerCommande() {
+    let formData = new FormData(document.getElementById("commandeForm"));
+
+    fetch("valider_commande.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        alert(data);
+        location.reload(); // Rafraîchir la page après la commande
+    });
+}
+$(document).ready(function() {
+    $("#btnCommander").click(function() {
+        $.ajax({
+            type: "POST",
+            url: "passer_commande.php",
+            success: function(response) {
+                alert(response);
+                location.reload(); // Rafraîchit la page après la commande
+            },
+            error: function() {
+                alert("Erreur lors du passage de la commande.");
+            }
+        });
+    });
+});
+
+function annulerCommande(commandeId) {
+    if (confirm("Êtes-vous sûr de vouloir annuler cette commande ?")) {
+        // Faire une requête AJAX pour annuler la commande
+        $.ajax({
+            type: "POST",
+            url: "annuler_commande.php", // Ce fichier va gérer l'annulation de la commande
+            data: { commande_id: commandeId },
+            success: function(response) {
+                alert(response); // Afficher le message de succès ou d'échec
+                location.reload(); // Recharger la page pour afficher les changements
+            }
+        });
+    }
+}
 
 
 </script>

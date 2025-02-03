@@ -56,11 +56,75 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Modifier Livre</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #3498db; /* Bleu ciel */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 370px;
+            text-align: center;
+            height:700px;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            text-align: left;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 90%;
+            padding: -2px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .show-password {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .show-password input {
+            width: auto;
+            margin-right: 5px;
+        }
+        button {
+            background-color:#3498db;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #006f8b;
+        }
+       
+    </style>
 <body>
-    <h2>Modifier un Livre</h2>
+    
 
     <?php if (isset($livre)): ?>
     <form method="POST" enctype="multipart/form-data">
+    <h2>Modifier un Livre</h2>
+
         <input type="hidden" name="id" value="<?= $livre['id']; ?>">
         <input type="hidden" name="ancienne_photo" value="<?= $livre['photo']; ?>">
         
@@ -82,7 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label>Nouvelle photo :</label>
         <input type="file" name="photo"><br><br>
         
-        <button type="submit" name="modifier" style="background-color: blue; color: white;">Modifier</button>
+        <button type="submit" name="modifier" style="color: white;">Modifier</button>
     </form>
     <?php else: ?>
         <p>Livre introuvable.</p>
