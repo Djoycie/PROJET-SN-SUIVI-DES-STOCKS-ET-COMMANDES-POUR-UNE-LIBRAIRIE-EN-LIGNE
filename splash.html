@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chargement...</title>
+    <link rel="stylesheet" href="splashscreen.css">
+</head>
+<body>
+
+    <div id="splash-screen">
+        <div class="logo">
+            <img src="logo.jpg" alt="log">
+        </div>
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    let progressBar = document.querySelector(".progress");
+    let splashScreen = document.getElementById("splash-screen");
+
+    let progress = 0;
+    let interval = setInterval(() => {
+        progress += 10;
+        progressBar.style.width = progress + "%";
+        
+        if (progress >= 100) {
+            clearInterval(interval);
+            setTimeout(() => {
+                splashScreen.style.opacity = "0";
+                setTimeout(() => {
+                    splashScreen.style.display = "none";
+                    // Redirige vers la page principale
+                    window.location.href = "question.html"; 
+                }, 800);
+            }, 500);
+        }
+    }, 300);
+});
+    </script>
+
+</body>
+</html>
