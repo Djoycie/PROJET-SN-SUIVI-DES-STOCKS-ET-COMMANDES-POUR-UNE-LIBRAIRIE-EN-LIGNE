@@ -11,10 +11,11 @@ try {
     $conn = new PDO("sqlsrv:Server=$serverName;Database=$database", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Requête pour récupérer toutes les données des clients
-    $stmt = $conn->prepare("SELECT * FROM client");
+    // Appel de la procédure stockée pour récupérer toutes les commandes
+    $stmt = $conn->prepare("EXEC GetAllCommandes");
     $stmt->execute();
-    $clients = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $commandes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 } catch (PDOException $e) {
     echo "<script>alert('Erreur : " . addslashes($e->getMessage()) . "');</script>";
     exit();
@@ -26,18 +27,20 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des Clients</title>
+    <title>Liste des Commandes</title>
     <style>
         /* Style global de la page */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f4f7fc;
             height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
-            background-color: #f4f7fc;
+            justify-content: center;
+            flex-direction: column;
+            overflow-x: hidden;
         }
 
         /* Image de fond floutée */
@@ -54,7 +57,7 @@ try {
             z-index: -1;
         }
 
-        /* Conteneur principal centré */
+        /* Conteneur principal */
         .container {
             width: 90%;
             max-width: 1200px;
@@ -63,10 +66,9 @@ try {
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             text-align: center;
-            overflow: hidden;
         }
 
-        h1 {
+        h2 {
             color: #3498db;
             margin-bottom: 20px;
         }
@@ -75,9 +77,11 @@ try {
         table {
             width: 100%;
             border-collapse: collapse;
-            background-color: #fff;
+            margin-top: 10px;
+            background-color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
+            overflow: hidden;
         }
 
         th, td {
@@ -106,45 +110,60 @@ try {
                 padding: 8px 10px;
             }
 
-            h1 {
+            h2 {
                 font-size: 1.5em;
             }
+        }
+
+        img{
+            width: 100%;
         }
     </style>
 </head>
 <body>
 
     <!-- Image de fond floutée -->
-    <div class="background"></div>
+    <div class="background">
+      
+    </div>
 
     <div class="container">
-        <h1>Liste des Clients</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Email</th>
-                    <th>Téléphone</th>
-                    <th>Adresse</th>
-                    <th>Date d'inscription</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($clients as $client): ?>
+        <h2>Liste des Commandes</h2>
+
+        <?php if (count($commandes) > 0): ?>
+            <table>
+                <thead>
                     <tr>
-                        <td><?= htmlspecialchars($client['id']); ?></td>
-                        <td><?= htmlspecialchars($client['nom']); ?></td>
-                        <td><?= htmlspecialchars($client['prenom']); ?></td>
-                        <td><?= htmlspecialchars($client['email']); ?></td>
-                        <td><?= htmlspecialchars($client['telephone']); ?></td>
-                        <td><?= htmlspecialchars($client['adresse']); ?></td>
-                        <td><?= htmlspecialchars($client['date_inscription']); ?></td>
+                        <th>Commande ID</th>
+                        <th>Nom Client</th>
+                        <th>Adresse</th>
+                        <th>Téléphone</th>
+                        <th>Date de Commande</th>
+                        <th>Nom du Livre</th>
+                        <th>Quantité</th>
+                        <th>Prix Unitaire</th>
+                        <th>Total</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php foreach ($commandes as $commande): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($commande['commande_id']); ?></td>
+                            <td><?= htmlspecialchars($commande['nom']); ?></td>
+                            <td><?= htmlspecialchars($commande['adresse']); ?></td>
+                            <td><?= htmlspecialchars($commande['telephone']); ?></td>
+                            <td><?= htmlspecialchars($commande['date_commande']); ?></td>
+                            <td><?= htmlspecialchars($commande['livre_nom']); ?></td>
+                            <td><?= htmlspecialchars($commande['quantite']); ?></td>
+                            <td><?= htmlspecialchars($commande['prix']); ?> fcfa</td>
+                            <td><?= number_format($commande['total_article'], 2); ?> fcfa</td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php else: ?>
+            <p>Aucune commande trouvée.</p>
+        <?php endif; ?>
     </div>
 
 </body>

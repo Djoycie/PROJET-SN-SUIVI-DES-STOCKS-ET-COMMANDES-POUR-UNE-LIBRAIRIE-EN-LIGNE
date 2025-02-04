@@ -40,39 +40,41 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Compte</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="compte.css">
 </head>
+
 <body>
 
-    <h1>Mon Compte</h1>
+    
     
     <form action="update_compte.php" method="POST">
-        <div>
-            <label for="nom">Nom</label>
+    <h1>Mon Compte</h1>
+        <div  class="form-group">
+            <label  for="nom">Nom</label>
             <input type="text" id="nom" name="nom" value="<?= htmlspecialchars($client['nom']); ?>" readonly>
         </div>
 
-        <div>
+        <div  class="form-group">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" value="<?= htmlspecialchars($client['email']); ?>">
         </div>
 
-        <div>
+        <div  class="form-group">
             <label for="adresse">Adresse</label>
             <input type="text" id="adresse" name="adresse" value="<?= htmlspecialchars($client['adresse']); ?>">
         </div>
 
-        <div>
+        <div  class="form-group">
             <label for="telephone">Téléphone</label>
             <input type="text" id="telephone" name="telephone" value="<?= htmlspecialchars($client['telephone']); ?>">
         </div>
 
-        <div>
+        <div  class="form-group">
             <label for="password">Mot de passe</label>
             <input type="password" id="password" name="password">
         </div>
 
-        <button type="submit">Valider les modifications</button>
+        <button class="btn" type="submit">Valider les modifications</button>
     </form>
 
 </body>

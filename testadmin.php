@@ -41,7 +41,7 @@ if (isset($_POST['categorie']) && $_POST['categorie'] != '') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventory System</title>
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="admin1.css">
    
 </head>
 <body>
@@ -57,7 +57,7 @@ if (isset($_POST['categorie']) && $_POST['categorie'] != '') {
             <ul>
                 <li>Gestion du stock</li>
                 <li onclick="window.location.href='historiqueclients.php'">Historique des clients</li>
-                <li>Historique commandes</li>
+                <li onclick="window.location.href='historique_commandes.php'">Historique commandes</li>
                 <li  onclick="window.location.href='historique_commentaire.php'">Rapport satisfaction Client</li>
                <li id="logoutButton">Se deconnecter</li>
             </ul>

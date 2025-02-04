@@ -2,17 +2,32 @@
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $id = $_POST["id"];
+    $id = $_POST["id"];
 
-  // Supprime l'article du panier
-  unset($_SESSION["panier"][$id]);
+    // Vérifier si l'article existe dans le panier
+    if (isset($_SESSION["panier"][$id])) {
+        // Récupérer la quantité de l'article à supprimer
+        $quantite = $_SESSION["panier"][$id]["quantite"];
 
-  // Met à jour la quantité disponible en stock
-  $conn = new PDO("sqlsrv:Server=DESKTOP-H147H0H\\SQLEXPRESS;Database=projetsn", "", "");
-  $stmt = $conn->prepare("UPDATE Livres SET quantite = quantite + ? WHERE id = ?");
-  $stmt->execute(array($_SESSION["panier"][$id]["quantite"], $id));
+        // Connexion à la base de données
+        try {
+            $conn = new PDO("sqlsrv:Server=DESKTOP-H147H0H\\SQLEXPRESS;Database=projetsn", "", "");
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  echo json_encode(array("success" => true));
+            // Met à jour la quantité disponible en stock
+            $stmt = $conn->prepare("UPDATE Livres SET quantite = quantite + ? WHERE id = ?");
+            $stmt->execute(array($quantite, $id));
+
+            // Supprimer l'article du panier
+            unset($_SESSION["panier"][$id]);
+
+            // Retourner une réponse en JSON
+            echo json_encode(array("success" => true));
+        } catch (PDOException $e) {
+            echo json_encode(array("error" => $e->getMessage()));
+        }
+    } else {
+        echo json_encode(array("error" => "Article non trouvé dans le panier."));
+    }
 }
 ?>
-

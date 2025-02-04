@@ -28,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Vérification du mot de passe
             if (password_verify($passwordInput, $hashedPassword)) {
                 $_SESSION['nom'] = $nom; // Stocker le nom en session
+             
                 echo "<script>alert('Connexion réussie !'); window.location.href='pageaccueil.php';</script>";
             } else {
                 echo "<script>alert('Nom ou mot de passe incorrect.');window.location.href='login.html';</script>";

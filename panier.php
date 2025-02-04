@@ -15,7 +15,7 @@ if (isset($_SESSION["panier"])) {
       echo "<td>" . $article["prix"] . " fcfa</td>";
       echo "<td>" . $article["quantite"] . "</td>";
       echo "<td>" . $article["prix"] * $article["quantite"] . " €</td>";
-      echo "<td><button style='background-color:red; text-align:center; margin-left:30px;' onclick='supprimerDuPanier(" . $id . ")'>Supprimer</button></td>";
+      echo "<td><button style='background-color:red; height: 40px; width: 110px;border-radius:5px; text-align:center; margin-left:30px;' onclick='supprimerDuPanier(" . $id . ")'>Supprimer</button></td>";
       echo "</tr>";
     } else {
       echo "<tr>";
@@ -24,15 +24,20 @@ if (isset($_SESSION["panier"])) {
       echo "<td></td>";
       echo "<td></td>";
       echo "<td></td>";
-      echo "<td   ><button  style='background-color:red; margin-left:30px;' onclick='supprimerDuPanier(" . $id . ")'>Supprimer</button></td>";
-      echo "</tr>";
-    }
+      echo "<td><form action='supprimer_panier.php' method='POST'>
+      <input type='hidden' name='id' value='" . $id . "' />
+      <button type='submit' style='background-color:red; height: 40px; width: 110px;border-radius:5px;margin-left:30px;'>Supprimer</button>
+    </form></td>";
+echo "</tr>";
+}
+
+      
   }
 
   echo "<tr><td colspan='5'>Total :</td><td>" . $total . " fcfa</td></tr>";
   echo "</table>";
-  echo "<form action='passer_commande.php' method='POST'>
-          <button style='background-color:#3498db; margin-left:280px; cursor:pointer;' type='submit'>Commander</button>
+  echo "<form action='commander.php' method='POST'>
+          <button style='background-color:#3498db;height: 50px; margin-top: 20px;width: 110px;border-radius:5px; margin-left:280px; cursor:pointer;' type='submit'>Commander</button>
         </form>";
 
 

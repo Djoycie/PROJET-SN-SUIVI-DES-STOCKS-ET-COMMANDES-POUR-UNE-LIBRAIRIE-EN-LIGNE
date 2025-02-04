@@ -19,7 +19,7 @@ $livres = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ACCUEIL LIBRAIRIE</title>
-    <link rel="stylesheet" href="accueil.css">
+    <link rel="stylesheet" href="accueil1.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -33,72 +33,7 @@ $livres = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </div>
 
 
-<style>
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
-    .modal-content { background: white; padding: 20px; width: 50%; margin: 10% auto; border-radius: 10px; }
-    .close { float: right; cursor: pointer; font-size: 20px; }
-    .commentaire{
-       
-    background-color: #e67e22;
-    cursor: pointer;
-    margin-top: 50px;
-    display: inline-block;
-    display:flex;
-    margin-left:800px;
-    margin-bottom:10px
-    }
 
-    .commentaire:hover {
-background-color:darkorange;
-
-}
-
-.sidebar {
-    width: 20%;
-    background-color: #3498db;
-    display: flex;
-    flex-direction: column;
-    padding: 20px 0;
-    gap: 15px;
-    align-items: center;
-    height: 1000px;
-}
-
-.user-info {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-img{
-    border-radius: 50%;
-    height: 100px;
-    width: 100px;
-}
-
-.statu {
-    font-size: 12px;
-    color: lightgreen;
-}
-
-.sidebar-button {
-    width: 100%;
-    padding: 15px;
-    background-color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    margin-bottom:10px;
-}
-
-th{
-  background-color:#3498db;
-}
-
-</style>
 
 
 

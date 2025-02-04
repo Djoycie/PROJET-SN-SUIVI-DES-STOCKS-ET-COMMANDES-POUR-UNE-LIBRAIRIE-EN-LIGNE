@@ -1,0 +1,346 @@
+
+/* Importation d'une police moderne */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Mise en page générale */
+body {
+    background-color: #f4f8fb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0; /* Suppression de la marge par défaut */
+    padding: 0; /* Suppression du padding par défaut */
+}
+
+/* Conteneur principal */
+.container {
+    display: flex;
+    width: 90%;
+    max-width: 2000px;
+    margin-top: 0; /* Suppression de la marge pour rapprocher le contenu */
+}
+
+/* SIDEBAR (Barre latérale) */
+.sidebar {
+    position: fixed; /* Rendre la sidebar fixe */
+    top: 0;
+    left: 0;
+    width: 318px;
+    height: 100vh; /* Hauteur de l'écran */
+    background: #3498db;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    z-index: 10; /* Assurez-vous que la sidebar est au-dessus du contenu */
+    overflow-y: auto; /* Permet au contenu de défiler si nécessaire */
+}
+
+.user-info {
+    text-align: center;
+}
+
+.user-info img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    border: 3px solid white;
+    margin-bottom: 10px;
+}
+
+.statu {
+    display: block;
+    font-size: 12px;
+    color: #2ecc71;
+}
+
+/* Contenu principal */
+.main-content {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    margin-left: 270px; /* Espace suffisant pour la sidebar fixe */
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Permet au contenu de défiler */
+}
+
+/* En-tête */
+.header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #3498db;
+}
+
+.header img {
+    height: 50px;
+}
+
+.header h1 {
+    color: #3498db;
+    font-weight: 600;
+}
+
+/* Barre de recherche et filtres */
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0; /* Réduire l'écart entre les éléments */
+}
+
+.search-bar input, .search-bar select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.search-bar button {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background: #2980b9;
+}
+
+/* Tableau des livres */
+.book-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.book-table th, .book-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.book-table th {
+    background-color: #3498db;
+    color: white;
+}
+
+.book-table img {
+    width: 50px;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Boutons d'action */
+.add-to-cart {
+    background: #2ecc71;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-to-cart:hover {
+    background: #27ae60;
+}
+
+/* Style du modal (panier) */
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    width: 55%;
+    margin: 10% auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+
+
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sidebar {
+        width: 100%;
+        margin-bottom: 10px;
+        height: auto; /* Laisser la sidebar se redimensionner sur mobile */
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .modal-content {
+        width: 90%;
+    }
+}
+
+.sidebar-button span {
+    font-size: 20px; /* Ajuste la taille de l'icône */
+    margin-right: 10px; /* Donne un peu d'espace à droite de l'icône */
+}
+
+/* Style du bouton au survol */
+.sidebar-button:hover span {
+    color: white; /* Change la couleur de l'icône au survol du bouton */
+}
+
+/* Ajouter une animation sur les icônes */
+.sidebar-button span {
+    transition: transform 0.2s ease; /* Animation douce pour les icônes */
+}
+
+.sidebar-button:hover span {
+    transform: scale(1.2); /* Agrandit l'icône lors du survol */
+}
+
+
+/* Conteneur principal */
+
+
+
+
+.sidebar-button {
+    width: 100%;
+    padding: 12px;
+    background-color: white;
+    color: #3498db;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    text-align: left;
+}
+
+.sidebar-button:hover {
+    background-color: #2980b9;
+    color: white;
+}
+
+
+
+
+/* Tableau des livres */
+.book-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.book-table th, .book-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.book-table th {
+    background-color: #3498db;
+    color: white;
+}
+
+.book-table img {
+    width: 50px;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Boutons d'action */
+.add-to-cart {
+    background: #2ecc71;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-to-cart:hover {
+    background: #27ae60;
+}
+
+/* Style du modal (panier) */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 130px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+    
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    width: 55%;
+    margin: 10% auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* Style du panier */
+#notifPanier {
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 3px 7px;
+    font-size: 12px;
+    position: relative;
+    top: -5px;
+    left: 5px;
+}
+
+/* Formulaire de commande */
+
+
+
+
+.commentaire {
+    background: #f3b42c;
+    color: white;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-left: 700px;
+    margin-right: 0;
+}
+
+.commentaire:hover{
+    background: #e9ae30;
+}
+
